@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IntelliForm AI — Automate form filling with AI-powered smart field mapping">
+    <title>{% block title %}IntelliForm AI{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+
+<!-- ── Navbar ───────────────────────────────────────────────────────── -->
+{% block navbar %}
+<nav class="navbar">
+    <a href="/" class="navbar-logo">⚡ IntelliForm AI</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-nav" id="navbar-nav">
+        {% block nav_items %}
+        <a href="{{ url_for('auth.login') }}" class="nav-link">Login</a>
+        <a href="{{ url_for('auth.signup') }}" class="nav-link">Sign Up</a>
+        {% endblock %}
+    </div>
+</nav>
+{% endblock %}
+
+<!-- ── Flash Messages ──────────────────────────────────────────────── -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="container" style="margin-bottom: 0;">
+    <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="flash-msg {{ category }}" id="flash-{{ loop.index }}">
+            {% if category == 'success' %}
+            <span>✅</span>
+            {% elif category == 'error' %}
+            <span>❌</span>
+            {% elif category == 'warning' %}
+            <span>⚠️</span>
+            {% else %}
+            <span>💡</span>
+            {% endif %}
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endwith %}
+
+<!-- ── Main Content ────────────────────────────────────────────────── -->
+{% block content %}{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+<!-- ── Mobile Nav Toggle ───────────────────────────────────────────── -->
+<script>
+(function() {
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('navbar-nav');
+    if (toggle && nav) {
+        toggle.addEventListener('click', function() {
+            nav.classList.toggle('open');
+            toggle.classList.toggle('active');
+        });
+    }
+
+    // Auto-dismiss flash messages after 5 seconds
+    var flashes = document.querySelectorAll('.flash-msg');
+    flashes.forEach(function(el) {
+        setTimeout(function() {
+            el.style.transition = 'opacity 0.4s, transform 0.4s';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(-8px)';
+            setTimeout(function() { el.remove(); }, 400);
+        }, 5000);
+    });
+})();
+</script>
+
+</body>
+</html>
