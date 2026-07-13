@@ -18,15 +18,18 @@ if sys.stderr and hasattr(sys.stderr, 'buffer'):
         pass
 
 import logging
+is_vercel = 'VERCEL' in os.environ or 'AWS_LAMBDA_FUNCTION_NAME' in os.environ
+handlers = [logging.StreamHandler(sys.stdout)]
+if not is_vercel:
+    handlers.append(logging.FileHandler('flask_debug.log', encoding='utf-8', mode='w'))
+
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s [%(levelname)s] %(message)s',
-    handlers=[
-        logging.FileHandler('flask_debug.log', encoding='utf-8', mode='w'),
-        logging.StreamHandler(sys.stdout),
-    ]
+    handlers=handlers
 )
 logger = logging.getLogger(__name__)
+
 
 import config
 
