@@ -1,5 +1,0 @@
-2026-07-13 23:04:14,760 [INFO] Starting IntelliForm-AI server...
-2026-07-13 23:04:14,776 [WARNING]  * Debugger is active!
-2026-07-13 23:04:14,783 [INFO]  * Debugger PIN: 111-223-343
-2026-07-13 23:04:21,090 [INFO] 127.0.0.1 - - [13/Jul/2026 23:04:21] "GET / HTTP/1.1" 200 -
-2026-07-13 23:04:21,282 [INFO] 127.0.0.1 - - [13/Jul/2026 23:04:21] "GET /static/css/style.css HTTP/1.1" 200 -
