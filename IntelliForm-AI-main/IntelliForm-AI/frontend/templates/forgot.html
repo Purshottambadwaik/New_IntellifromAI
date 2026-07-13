@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Reset Password — IntelliForm AI{% endblock %}
+
+{% block content %}
+<div class="container" style="display:flex; align-items:center; justify-content:center; min-height: calc(100vh - 80px);">
+    <div class="card card-sm">
+        <div class="card-header">
+            <h1 class="gradient-text">Reset Password</h1>
+            <p>Enter your email and a new password</p>
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-input" placeholder="you@example.com" required id="forgot-email">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">New Password</label>
+                <input type="password" name="new_password" class="form-input" placeholder="••••••••" required id="forgot-password">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg mt-2" id="forgot-submit">Reset Password</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="text-center">
+            <a href="{{ url_for('auth.login') }}" class="link" style="font-size:14px;">← Back to Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

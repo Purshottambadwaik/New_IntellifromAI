@@ -1,0 +1,22 @@
+# Ignore environment secrets
+.env
+**/.env
+
+# Ignore debug log files
+flask_debug.log
+**/flask_debug.log
+
+# Ignore Python caches & compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+.venv/
+env/
+
+# Ignore IDE files
+.vscode/
+.idea/
