@@ -18,9 +18,9 @@ if sys.stderr and hasattr(sys.stderr, 'buffer'):
         pass
 
 import logging
-is_vercel = 'VERCEL' in os.environ or 'AWS_LAMBDA_FUNCTION_NAME' in os.environ
+is_production_cloud = 'VERCEL' in os.environ or 'AWS_LAMBDA_FUNCTION_NAME' in os.environ or 'RENDER' in os.environ
 handlers = [logging.StreamHandler(sys.stdout)]
-if not is_vercel:
+if not is_production_cloud:
     handlers.append(logging.FileHandler('flask_debug.log', encoding='utf-8', mode='w'))
 
 logging.basicConfig(

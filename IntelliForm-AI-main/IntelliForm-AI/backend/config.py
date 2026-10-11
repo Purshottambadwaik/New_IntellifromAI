@@ -18,7 +18,7 @@ STATIC_FOLDER = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend', 'static
 MONGO_URI = os.environ.get('MONGO_URI', '')
 
 # JWT
-JWT_SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback_jwt_secret')
+JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY', os.environ.get('SECRET_KEY', 'fallback_jwt_secret'))
 JWT_TOKEN_EXPIRY_HOURS = 24
 
 # Gemini AI
