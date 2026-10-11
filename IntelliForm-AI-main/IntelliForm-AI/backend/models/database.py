@@ -68,8 +68,8 @@ def init_db():
             print("[OK] Connected to MongoDB successfully!")
             return db, users_collection
 
-        except InvalidURI as e:
-            print(f"[ERROR] Invalid MongoDB URI syntax: {e}")
+        except (InvalidURI, ConfigurationError) as e:
+            print(f"[ERROR] MongoDB configuration / DNS error: {e}")
             return get_mongomock_fallback(e)
         except Exception as e:
             if attempt < max_retries:
